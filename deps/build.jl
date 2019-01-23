@@ -8,7 +8,7 @@ function copy_libs(src, dst)
     for i = 1:length(files)
         file = files[i]
         if occursin(r"\w*?-\w*?(-.)?.(so|dylib|dll)$", file)
-            cp("$src/$file", "$dst/$file", follow_symlinks=true, remove_destination=true)
+            cp("$src/$file", "$dst/$file", follow_symlinks=true, force=true)
         end
     end
 end
@@ -58,8 +58,8 @@ const SFML_VERSION="2.2"
     copy_libs("$deps/sfml/lib", deps)
     copy_libs("$deps/csfml/lib", deps)
 
-    cp("$deps/sfml/extlibs/freetype.framework", "$deps/freetype.framework", remove_destination=true)
-    cp("$deps/sfml/extlibs/sndfile.framework", "$deps/sndfile.framework", remove_destination=true)
+    cp("$deps/sfml/extlibs/freetype.framework", "$deps/freetype.framework", force=true)
+    cp("$deps/sfml/extlibs/sndfile.framework", "$deps/sndfile.framework", force=true)
 
     cd(deps)
     modules = ["system", "network", "audio", "window", "graphics"]
