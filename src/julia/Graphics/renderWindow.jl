@@ -29,7 +29,7 @@ function RenderWindow(mode::VideoMode, title::AbstractString, settings::ContextS
     end
     settings_ptr = Ref(settings)
     icon = Image(joinpath(dirname(@__FILE__),"..","..","..","assets","sfmljl_icon.png"))
-    window = RenderWindow(ccall((:sfRenderWindow_create, libcsfml_graphics), Ptr{CVoid}, (VideoMode, Ptr{Cchar}, UInt32, Ref{ContextSettings},), mode, title, style_int, settings_ptr))
+    window = RenderWindow(ccall((:sfRenderWindow_create, libcsfml_graphics), Ptr{Cvoid}, (VideoMode, Ptr{Cchar}, UInt32, Ref{ContextSettings},), mode, title, style_int, settings_ptr))
     # set_icon(window, icon, 64, 64)
     return window
 end
@@ -44,49 +44,49 @@ function RenderWindow(title::AbstractString, width::Integer, height::Integer)
 end
 
 function set_framerate_limit(window::RenderWindow, limit::Integer)
-    ccall((:sfRenderWindow_setFramerateLimit, libcsfml_graphics), CVoid, (Ptr{CVoid}, UInt,), window.ptr, limit)
+    ccall((:sfRenderWindow_setFramerateLimit, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, UInt,), window.ptr, limit)
 end
 
 function set_vsync_enabled(window::RenderWindow, enabled::Bool)
-    ccall((:sfRenderWindow_setVerticalSyncEnabled, libcsfml_graphics), CVoid, (Ptr{CVoid}, Int32,), window.ptr, enabled)
+    ccall((:sfRenderWindow_setVerticalSyncEnabled, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Int32,), window.ptr, enabled)
 end
 
 function isopen(window::RenderWindow)
-    return Bool(ccall((:sfRenderWindow_isOpen, libcsfml_graphics), Int32, (Ptr{CVoid},), window.ptr))
+    return Bool(ccall((:sfRenderWindow_isOpen, libcsfml_graphics), Int32, (Ptr{Cvoid},), window.ptr))
 end
 
 function pollevent(window::RenderWindow, event::Event)
-    return Bool(ccall((:sfRenderWindow_pollEvent, libcsfml_graphics), Int32, (Ptr{CVoid}, Ptr{CVoid},), window.ptr, event.ptr))
+    return Bool(ccall((:sfRenderWindow_pollEvent, libcsfml_graphics), Int32, (Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, event.ptr))
 end
 
 function waitevent(window::RenderWindow, event::Event)
-    return Bool(ccall((:sfRenderWindow_waitEvent, libcsfml_graphics), Int32, (Ptr{CVoid}, Ptr{CVoid},), window.ptr, event.ptr))
+    return Bool(ccall((:sfRenderWindow_waitEvent, libcsfml_graphics), Int32, (Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, event.ptr))
 end
 
 function set_position(window::RenderWindow, pos::Vector2)
     pos = to_vec2i(pos)
-    ccall((:sfRenderWindow_setPosition, libcsfml_graphics), CVoid, (Ptr{CVoid}, Vector2i,), window.ptr, pos)
+    ccall((:sfRenderWindow_setPosition, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Vector2i,), window.ptr, pos)
 end
 
 function get_position(window::RenderWindow)
-    return ccall((:sfRenderWindow_getPosition, libcsfml_graphics), Vector2i, (Ptr{CVoid},), window.ptr)
+    return ccall((:sfRenderWindow_getPosition, libcsfml_graphics), Vector2i, (Ptr{Cvoid},), window.ptr)
 end
 
 function set_size(window::RenderWindow, window_size::Vector2)
     window_size = to_vec2u(window_size)
-    ccall((:sfRenderWindow_setSize, libcsfml_graphics), CVoid, (Ptr{CVoid}, Vector2u), window.ptr, window_size)
+    ccall((:sfRenderWindow_setSize, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Vector2u), window.ptr, window_size)
 end
 
 function get_size(window::RenderWindow)
-    return to_vec2i(ccall((:sfRenderWindow_getSize, libcsfml_graphics), Vector2u, (Ptr{CVoid},), window.ptr))
+    return to_vec2i(ccall((:sfRenderWindow_getSize, libcsfml_graphics), Vector2u, (Ptr{Cvoid},), window.ptr))
 end
 
 function set_title(window::RenderWindow, title::AbstractString)
-    ccall((:sfRenderWindow_setTitle, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{Cchar},), window.ptr, title)
+    ccall((:sfRenderWindow_setTitle, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cchar},), window.ptr, title)
 end
 
 function set_icon(window::RenderWindow, pixels::Array{UInt8}, width=64, height=64)
-    ccall((:sfRenderWindow_setIcon, libcsfml_graphics), CVoid, (Ptr{CVoid}, UInt32, UInt32, Ptr{UInt8},), window.ptr, width, height, pointer(pixels))
+    ccall((:sfRenderWindow_setIcon, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, UInt32, UInt32, Ptr{UInt8},), window.ptr, width, height, pointer(pixels))
 end
 
 function set_icon(window::RenderWindow, image::Image, width=64, height=64)
@@ -94,44 +94,44 @@ function set_icon(window::RenderWindow, image::Image, width=64, height=64)
 end
 
 function set_visible(window::RenderWindow, visible::Bool)
-    ccall((:sfRenderWindow_setVisible, libcsfml_graphics), CVoid, (Ptr{CVoid}, Int32,), window.ptr, visible)
+    ccall((:sfRenderWindow_setVisible, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Int32,), window.ptr, visible)
 end
 
 function set_mousecursor_visible(window::RenderWindow, visible::Bool)
-    ccall((:sfRenderWindow_setMouseCursorVisible, libcsfml_graphics), CVoid, (Ptr{CVoid}, Int32,), window.ptr, visible)
+    ccall((:sfRenderWindow_setMouseCursorVisible, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Int32,), window.ptr, visible)
 end
 
 function set_keyrepeat_enabled(window::RenderWindow, enabled::Bool)
-    ccall((:sfRenderWindow_setKeyRepeatEnabled, libcsfml_graphics), CVoid, (Ptr{CVoid}, Int32,), window.ptr, enabled)
+    ccall((:sfRenderWindow_setKeyRepeatEnabled, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Int32,), window.ptr, enabled)
 end
 
 function set_active(window::RenderWindow, active::Bool)
-    ccall((:sfRenderWindow_setActive, libcsfml_graphics), CVoid, (Ptr{CVoid}, Int32,), window.ptr, active)
+    ccall((:sfRenderWindow_setActive, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Int32,), window.ptr, active)
 end
 
 function requestfocus(window::RenderWindow)
-    ccall((:sfRenderWindow_requestFocus, libcsfml_graphics), CVoid, (Ptr{CVoid},), window.ptr)
+    ccall((:sfRenderWindow_requestFocus, libcsfml_graphics), Cvoid, (Ptr{Cvoid},), window.ptr)
 end
 
 function hasfocus(window::RenderWindow)
-    return Bool(ccall((:sfRenderWindow_hasFocus, libcsfml_graphics), Int32, (Ptr{CVoid},), window.ptr))
+    return Bool(ccall((:sfRenderWindow_hasFocus, libcsfml_graphics), Int32, (Ptr{Cvoid},), window.ptr))
 end
 
 function set_view(window::RenderWindow, view::View)
-    ccall((:sfRenderWindow_setView, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid},), window.ptr, view.ptr)
+    ccall((:sfRenderWindow_setView, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, view.ptr)
     window._view = view
 end
 
 function get_view(window::RenderWindow)
-    return View(ccall((:sfRenderWindow_getView, libcsfml_graphics), Ptr{CVoid}, (Ptr{CVoid},), window.ptr))
+    return View(ccall((:sfRenderWindow_getView, libcsfml_graphics), Ptr{Cvoid}, (Ptr{Cvoid},), window.ptr))
 end
 
 function get_default_view(window::RenderWindow)
-    return View(ccall((:sfRenderWindow_getDefaultView, libcsfml_graphics), Ptr{CVoid}, (Ptr{CVoid},), window.ptr))
+    return View(ccall((:sfRenderWindow_getDefaultView, libcsfml_graphics), Ptr{Cvoid}, (Ptr{Cvoid},), window.ptr))
 end
 
 function get_viewport(window::RenderWindow)
-    return ccall((:sfRenderWindow_getViewport, libcsfml_graphics), IntRect, (Ptr{CVoid},), window.ptr)
+    return ccall((:sfRenderWindow_getViewport, libcsfml_graphics), IntRect, (Ptr{Cvoid},), window.ptr)
 end
 
 function draw(window::RenderWindow, object::Drawable, shader::Shader)
@@ -147,56 +147,56 @@ function draw(window::RenderWindow, object::Drawable)
     draw(window, object, C_NULL)
 end
 
-function draw(window::RenderWindow, object::CircleShape, renderStates::Ptr{CVoid})
-    ccall((:sfRenderWindow_drawCircleShape, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid}, Ptr{CVoid},), window.ptr, object.ptr, renderStates)
+function draw(window::RenderWindow, object::CircleShape, renderStates::Ptr{Cvoid})
+    ccall((:sfRenderWindow_drawCircleShape, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, object.ptr, renderStates)
 end
 
-function draw(window::RenderWindow, object::RectangleShape, renderStates::Ptr{CVoid})
-    ccall((:sfRenderWindow_drawRectangleShape, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid}, Ptr{CVoid},), window.ptr, object.ptr, renderStates)
+function draw(window::RenderWindow, object::RectangleShape, renderStates::Ptr{Cvoid})
+    ccall((:sfRenderWindow_drawRectangleShape, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, object.ptr, renderStates)
 end
 
-function draw(window::RenderWindow, object::Sprite, renderStates::Ptr{CVoid})
-    ccall((:sfRenderWindow_drawSprite, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid}, Ptr{CVoid},), window.ptr, object.ptr, renderStates)
+function draw(window::RenderWindow, object::Sprite, renderStates::Ptr{Cvoid})
+    ccall((:sfRenderWindow_drawSprite, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, object.ptr, renderStates)
 end
 
-function draw(window::RenderWindow, object::RenderText, renderStates::Ptr{CVoid})
-    ccall((:sfRenderWindow_drawText, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid}, Ptr{CVoid},), window.ptr, object.ptr, renderStates)
+function draw(window::RenderWindow, object::RenderText, renderStates::Ptr{Cvoid})
+    ccall((:sfRenderWindow_drawText, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, object.ptr, renderStates)
 end
 
-function draw(window::RenderWindow, object::ConvexShape, renderStates::Ptr{CVoid})
-    ccall((:sfRenderWindow_drawConvexShape, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid}, Ptr{CVoid},), window.ptr, object.ptr, renderStates)
+function draw(window::RenderWindow, object::ConvexShape, renderStates::Ptr{Cvoid})
+    ccall((:sfRenderWindow_drawConvexShape, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, object.ptr, renderStates)
 end
 
-function draw(window::RenderWindow, object::VertexArray, renderStates::Ptr{CVoid})
-    ccall((:sfRenderWindow_drawVertexArray, libcsfml_graphics), CVoid, (Ptr{CVoid}, Ptr{CVoid}, Ptr{CVoid},), window.ptr, object.ptr, renderStates)
+function draw(window::RenderWindow, object::VertexArray, renderStates::Ptr{Cvoid})
+    ccall((:sfRenderWindow_drawVertexArray, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid},), window.ptr, object.ptr, renderStates)
 end
 
 function clear(window::RenderWindow, color::Color)
-    ccall((:sfRenderWindow_clear, libcsfml_graphics), CVoid, (Ptr{CVoid}, Color,), window.ptr, color)
+    ccall((:sfRenderWindow_clear, libcsfml_graphics), Cvoid, (Ptr{Cvoid}, Color,), window.ptr, color)
 end
 
 function display(window::RenderWindow)
-    ccall((:sfRenderWindow_display, libcsfml_graphics), CVoid, (Ptr{CVoid},), window.ptr)
+    ccall((:sfRenderWindow_display, libcsfml_graphics), Cvoid, (Ptr{Cvoid},), window.ptr)
 end
 
 function close(window::RenderWindow)
-    ccall((:sfRenderWindow_close, libcsfml_graphics), CVoid, (Ptr{CVoid},), window.ptr)
+    ccall((:sfRenderWindow_close, libcsfml_graphics), Cvoid, (Ptr{Cvoid},), window.ptr)
 end
 
 function destroy(window::RenderWindow)
-    ccall((:sfRenderWindow_destroy, libcsfml_graphics), CVoid, (Ptr{CVoid},), window.ptr)
+    ccall((:sfRenderWindow_destroy, libcsfml_graphics), Cvoid, (Ptr{Cvoid},), window.ptr)
 end
 
 function capture(window::RenderWindow)
-    return Image(ccall((:sfRenderWindow_capture, libcsfml_graphics), Ptr{CVoid}, (Ptr{CVoid},), window.ptr))
+    return Image(ccall((:sfRenderWindow_capture, libcsfml_graphics), Ptr{Cvoid}, (Ptr{Cvoid},), window.ptr))
 end
 
 function pixel2coords(window::RenderWindow, point::Vector2, targetview::View=get_view(window))
     point = to_vec2i(point)
-    return ccall((:sfRenderWindow_mapPixelToCoords, libcsfml_graphics), Vector2f, (Ptr{CVoid}, Vector2i, Ptr{CVoid},), window.ptr, point, targetview.ptr)
+    return ccall((:sfRenderWindow_mapPixelToCoords, libcsfml_graphics), Vector2f, (Ptr{Cvoid}, Vector2i, Ptr{Cvoid},), window.ptr, point, targetview.ptr)
 end
 
 function coords2pixel(window::RenderWindow, point::Vector2, targetview::View=get_view(window))
     point = to_vec2f(point)
-    return ccall((:sfRenderWindow_mapCoordsToPixel, libcsfml_graphics), Vector2i, (Ptr{CVoid}, Vector2f, Ptr{CVoid},), window.ptr, point, targetview.ptr)
+    return ccall((:sfRenderWindow_mapCoordsToPixel, libcsfml_graphics), Vector2i, (Ptr{Cvoid}, Vector2f, Ptr{Cvoid},), window.ptr, point, targetview.ptr)
 end

@@ -1,8 +1,8 @@
 mutable struct RenderWindow
-    ptr::Ptr{CVoid}
+    ptr::Ptr{Cvoid}
     _view::View
 
-    function RenderWindow(ptr::Ptr{CVoid})
+    function RenderWindow(ptr::Ptr{Cvoid})
         w = new(ptr)
         w
         # finalizer(w, destroy)
