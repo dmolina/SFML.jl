@@ -151,7 +151,6 @@ cd(joinpath(dirname(@__FILE__),"..","src","c"))
 include(joinpath("..", "src", "c", "createlib.jl"))
 createlib()
 cd(deps)
-println(isfile("sfml"))
 
 if isfile("sfml") || isdir("sfml")
     rm("sfml", recursive=true)
