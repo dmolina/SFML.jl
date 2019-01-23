@@ -1,3 +1,4 @@
+function createlib()
 ext = ""
 
 deps = joinpath(dirname(@__FILE__),"..","..","deps")
@@ -27,3 +28,4 @@ end
 end
 
 
+end

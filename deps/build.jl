@@ -145,8 +145,8 @@ end
 end
 
 cd(joinpath(dirname(@__FILE__),"..","src","c"))
-julia_exe = joinpath(JULIA_HOME, Base.julia_exename())
-run(`$(julia_exe) createlib.jl`)
+include("createlib.jl")
+createlib()
 
 cd(deps)
 
