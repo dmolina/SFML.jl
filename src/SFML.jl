@@ -23,6 +23,8 @@ function check_deps(ldd_result)
     end
 end
 
+const deps = joinpath(dirname(@__FILE__),"..","deps")
+
 @compat @static if Sys.isunix()
     const libcsfml_system = "libcsfml-system"
     const libcsfml_audio = "libcsfml-audio"
@@ -48,7 +50,6 @@ const libjuliasfml = "libjuliasfml"
 
 function __init__()
     old = pwd()
-    deps = joinpath(dirname(@__FILE__),"..","deps")
     push!(Libdl.DL_LOAD_PATH, deps)
     try
         @compat @static if Sys.isunix()
