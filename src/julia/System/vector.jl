@@ -79,7 +79,7 @@ end
 
 contains(obj, v::Vector2) = contains(obj, v.x, v.y)
 
-function eltype{T <: Vector2}(::Type{T})
+function eltype(::Type{T}) where {T <: Vector2}
     @assert isleaftype(T)
     typeof(T(0,0).x)
 end
@@ -90,7 +90,7 @@ eltype(v::Vector2) = eltype(typeof(v))
 
 ==(v::Vector2, w::Vector2) = (v.x == w.x) & (v.y == w.y)
 
-convert{V <: Vector2}(::Type{V}, v::Vector2) = V(v.x, v.y)
+convert(::Type{V}, v::Vector2) where {V <: Vector2} = V(v.x, v.y)
 
 Base.start(v::Vector2) = 1
 Base.next(v::Vector2, i) = (v[i], i+1)
