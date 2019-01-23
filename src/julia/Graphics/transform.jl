@@ -1,4 +1,4 @@
-immutable _Transform
+struct _Transform
     a_1::Cfloat
     a_2::Cfloat
     a_3::Cfloat

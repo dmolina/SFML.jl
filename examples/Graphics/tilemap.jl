@@ -3,7 +3,7 @@ using SFML
 """
 Interface to image file containing tiles.
 """
-type TileSet
+mutable struct TileSet
     texture::Texture
     size::Tuple{Int, Int}  # number of tiles in each direction
     tilesize::Vector2i # in pixel
@@ -49,7 +49,7 @@ function Base.convert(::Type{VertexArray}, t::Tile)
     va
 end
 
-type TileMap
+mutable struct TileMap
     tilemat::Matrix{Tile}
     globalbounds::FloatRect
     ts::TileSet

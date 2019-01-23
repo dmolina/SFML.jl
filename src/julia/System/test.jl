@@ -15,8 +15,8 @@ function thread2()
 end
 
 # const callback_c = Base.SingleAsyncWork(data -> thread1())
-# async_send_pthread(func::Ptr{Void}) = (ccall(:uv_async_send, Cint, (Ptr{Void},), func); C_NULL)
-# const c_async_send_pthread = cfunction(async_send_pthread, Ptr{Void}, (Ptr{Void},))
+# async_send_pthread(func::Ptr{CVoid}) = (ccall(:uv_async_send, Cint, (Ptr{CVoid},), func); C_NULL)
+# const c_async_send_pthread = cfunction(async_send_pthread, Ptr{CVoid}, (Ptr{CVoid},))
 
 # t = Thread(c_async_send_pthread, callback_c.handle)
 t = Thread(thread1)
