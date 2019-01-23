@@ -81,6 +81,8 @@ function __init__()
             Libdl.dlopen("libcsfml-audio", Libdl.RTLD_GLOBAL)
             Libdl.dlopen("libcsfml-window", Libdl.RTLD_GLOBAL)
             Libdl.dlopen("libcsfml-graphics", Libdl.RTLD_GLOBAL)
+        end
+
        cd(old)
     catch exception
         println("Something has gone wrong with the SFML installation.")
