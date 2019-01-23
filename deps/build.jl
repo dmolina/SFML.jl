@@ -7,7 +7,7 @@ function copy_libs(src, dst)
 
     for i = 1:length(files)
         file = files[i]
-        if ismatch(r"\w*?-\w*?(-.)?.(so|dylib|dll)$", file)
+        if occursin(r"\w*?-\w*?(-.)?.(so|dylib|dll)$", file)
             cp("$src/$file", "$dst/$file", follow_symlinks=true, remove_destination=true)
         end
     end
@@ -18,7 +18,7 @@ function symlink_files(dir, ext)
     files = readdir(dir)
     for file in files
         filename = file[1:findfirst(isequal('.'), file) - 1]
-        if ismatch(r"\w*?-\w*?.(so|dylib|dll)$", file)
+        if occursin(r"\w*?-\w*?.(so|dylib|dll)$", file)
             run(`ln -sf $filename.$ext $file`)
         end
     end
