@@ -77,7 +77,7 @@ function /(vec1::Vector2, vec2::Vector2)
     Vector2(vec1.x / vec2.x, vec1.y / vec2.y)
 end
 
-Base.contains(obj::T, v::Vector2) = contains(obj, v.x, v.y)
+contains(obj, v::Vector2) = contains(obj, v.x, v.y)
 
 import Base.eltype
 function eltype{T <: Vector2}(::Type{T})
