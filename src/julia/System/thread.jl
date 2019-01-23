@@ -1,5 +1,5 @@
 # Not currently working because of Julia threading problems
-type Thread
+mutable struct Thread
     ptr::Ptr{Cvoid}
 
     function Thread(ptr::Ptr{Cvoid})
