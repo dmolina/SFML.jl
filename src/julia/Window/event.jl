@@ -3,7 +3,7 @@ mutable struct Event
 
     function Event(ptr::Ptr{Cvoid})
         event = new(ptr)
-        finalizer(event, destroy)
+        finalizer(destroy, event)
         event
     end
 end

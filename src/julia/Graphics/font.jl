@@ -3,7 +3,7 @@ mutable struct Font
 
     function Font(ptr::Ptr{Cvoid})
         f = new(ptr)
-        finalizer(f, destroy)
+        finalizer(destroy, f)
         f
     end
 end

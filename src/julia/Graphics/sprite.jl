@@ -4,7 +4,7 @@ mutable struct Sprite <: Drawable
 
     function Sprite(ptr::Ptr{Cvoid})
         s = new(ptr)
-        finalizer(s, destroy)
+        finalizer(destroy, s)
         s
     end
 end

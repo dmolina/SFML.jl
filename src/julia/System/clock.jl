@@ -3,7 +3,7 @@ mutable struct Clock
 
     function Clock(ptr::Ptr{Cvoid})
         c = new(ptr)
-        finalizer(c, destroy)
+        finalizer(destroy, c)
         c
     end
 end

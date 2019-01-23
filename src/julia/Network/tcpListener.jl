@@ -3,7 +3,7 @@ mutable struct TcpListener
 
     function TcpListener(ptr::Ptr{Cvoid})
         t = new(ptr)
-        finalizer(t, destroy)
+        finalizer(destroy, t)
         t
     end
 end

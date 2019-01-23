@@ -3,7 +3,7 @@ mutable struct Packet
 
     function Packet(ptr::Ptr{Cvoid})
         p = new(ptr)
-        finalizer(p, destroy)
+        finalizer(destroy, p)
         p
     end
 end

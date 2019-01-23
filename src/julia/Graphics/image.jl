@@ -3,7 +3,7 @@ mutable struct Image
 
     function Image(ptr::Ptr{Cvoid})
         i = new(ptr)
-        finalizer(i, destroy)
+        finalizer(destroy, i)
         i
     end
 end

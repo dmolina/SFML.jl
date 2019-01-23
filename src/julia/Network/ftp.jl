@@ -69,7 +69,7 @@ mutable struct FtpListingResponse
 
     function FtpListingResponse(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end
@@ -103,7 +103,7 @@ mutable struct FtpDirectoryResponse
 
     function FtpDirectoryResponse(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end
@@ -133,7 +133,7 @@ mutable struct FtpResponse
 
     function FtpResponse(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end
@@ -159,7 +159,7 @@ mutable struct Ftp
 
     function Ftp(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end

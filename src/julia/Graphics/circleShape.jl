@@ -4,7 +4,7 @@ mutable struct CircleShape <: Drawable
 
     function CircleShape(ptr::Ptr{Cvoid})
         c = new(ptr)
-        finalizer(c, destroy)
+        finalizer(destroy, c)
         c
     end
 end

@@ -4,7 +4,7 @@ mutable struct Thread
 
     function Thread(ptr::Ptr{Cvoid})
         t = new(ptr)
-        finalizer(t, destroy)
+        finalizer(destroy, t)
         t
     end
 end

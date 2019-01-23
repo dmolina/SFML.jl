@@ -3,7 +3,7 @@ mutable struct SocketUDP
 
     function SocketUDP(ptr::Ptr{Cvoid})
         s = new(ptr)
-        finalizer(s, destroy)
+        finalizer(destroy, s)
         s
     end
 end

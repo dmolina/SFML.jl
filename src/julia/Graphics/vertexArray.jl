@@ -18,7 +18,7 @@ mutable struct VertexArray <: Drawable
 
     function VertexArray(ptr::Ptr{Cvoid})
         v = new(ptr)
-        finalizer(v, destroy)
+        finalizer(destroy, v)
         v
     end
 end

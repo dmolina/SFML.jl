@@ -45,7 +45,7 @@ mutable struct HttpRequest
 
     function HttpRequest(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end
@@ -83,7 +83,7 @@ mutable struct HttpResponse
 
     function HttpResponse(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end
@@ -117,7 +117,7 @@ mutable struct Http
 
     function Http(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end

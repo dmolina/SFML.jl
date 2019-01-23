@@ -3,7 +3,7 @@ mutable struct Music
 
     function Music(ptr::Ptr{Cvoid})
         m = new(ptr)
-        finalizer(m, destroy)
+        finalizer(destroy, m)
         m
     end
 end

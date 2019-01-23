@@ -3,7 +3,7 @@ mutable struct RenderStates
 
     function RenderStates(ptr::Ptr{Cvoid})
         self = new(ptr)
-        finalizer(self, destroy)
+        finalizer(destroy, self)
         self
     end
 end

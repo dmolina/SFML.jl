@@ -4,7 +4,7 @@ mutable struct Sound
 
     function Sound(ptr::Ptr{Cvoid})
         s = new(ptr, nothing)
-        finalizer(s, destroy)
+        finalizer(destroy, s)
         s
     end
 end

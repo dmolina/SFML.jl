@@ -4,7 +4,7 @@ mutable struct RectangleShape <: Drawable
 
     function RectangleShape(ptr::Ptr{Cvoid})
         r = new(ptr)
-        finalizer(r, destroy)
+        finalizer(destroy, r)
         r
     end
 end
