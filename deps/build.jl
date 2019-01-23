@@ -82,7 +82,7 @@ end
 
     if !useSystemSFML  # get our own, but may not work on some platforms [deps]
         sfml = "http://www.sfml-dev.org/files/SFML-$(SFML_VERSION)-linux-gcc-$(Sys.WORD_SIZE)-bit.tar.gz"
-        csfml = "http://www.sfml-dev.org/files/CSFML-$(CSFML_VERSION)-linux-gcc-$(Sys.WORD_SIZE)bit.tar.bz2"
+        csfml = "http://www.sfml-dev.org/files/CSFML-$(CSFML_VERSION)-linux-gcc-$(Sys.WORD_SIZE)bits.tar.bz2"
 
         if !isfile("sfml.tar.gz")
             println("Downloading SFML...")
