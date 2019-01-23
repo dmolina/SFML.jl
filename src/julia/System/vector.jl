@@ -92,9 +92,14 @@ eltype(v::Vector2) = eltype(typeof(v))
 
 convert(::Type{V}, v::Vector2) where {V <: Vector2} = V(v.x, v.y)
 
-Base.start(v::Vector2) = 1
-Base.next(v::Vector2, i) = (v[i], i+1)
-Base.done(v::Vector2, i) = i > 2
+function Base.iterate(v::Vector2, state=1)
+    if state > 2
+        nothing
+    else
+        (v[state], state+1)
+    end
+end
+
 function Base.getindex(v::Vector2, i)
     if i == 1
         return v.x
