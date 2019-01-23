@@ -18,7 +18,7 @@ function Thread(callback::Function)
     callback_c = Base.SingleAsyncWork(data -> callback())
 
     # async_send(func::Ptr{Cvoid}) = (ccall(:uv_async_send, Cint, (Ptr{Cvoid},), func); C_NULL)
-    const c_async_send = cfunction(async_send, Ptr{Cvoid}, (Ptr{Cvoid},))
+    c_async_send = cfunction(async_send, Ptr{Cvoid}, (Ptr{Cvoid},))
 
     Thread(ccall((:sfThread_create, libcsfml_system), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid},), c_async_send, callback_c.handle))
 end
