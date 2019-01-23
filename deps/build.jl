@@ -76,8 +76,8 @@ end
 
     # check if SFML is installed in the system
     useSystemSFML = false
-    systemLibPath = "/usr/lib"
-    if isfile("$(systemLibPath)/libcsfml-system.so")
+
+    if !isempty(Libdl.find_library("libcsfml-system"))
         useSystemSFML = true
     end
 
@@ -112,11 +112,11 @@ end
         end
     else
         # use system SFML/CSFML
-        for i = 1:length(modules)
-            cd(deps)
-            run(`ln -sf $(systemLibPath)/libcsfml-$(modules[i]).so libcsfml-$(modules[i]).so.$(LIB_VERSION)`)
-            run(`ln -sf $(systemLibPath)/libsfml-$(modules[i]).so libsfml-$(modules[i]).so`)
-        end
+        # for i = 1:length(modules)
+        #     cd(deps)
+        #     run(`ln -sf $(systemLibPath)/libcsfml-$(modules[i]).so libcsfml-$(modules[i]).so.$(LIB_VERSION)`)
+        #     run(`ln -sf $(systemLibPath)/libsfml-$(modules[i]).so libsfml-$(modules[i]).so`)
+        # end
     end
 end
 
