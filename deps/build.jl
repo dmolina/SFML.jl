@@ -99,7 +99,7 @@ end
         mkdir_if_necessary("csfml")
         run(`tar -xjf csfml.tar.bz2 -C csfml --strip-components=1`)
 
-        symlink_files("$deps/csfml/lib", "so.$(SFML_VERSION).0")
+        symlink_files("$deps/csfml/lib", "so.$(CSFML_VERSION)")
 
         copy_libs("$deps/sfml/lib", deps)
         copy_libs("$deps/csfml/lib", deps)
@@ -146,15 +146,15 @@ end
 end
 
 cd(joinpath(dirname(@__FILE__),"..","src","c"))
-include("createlib.jl")
+include(joinpath("..", "src", "c", "createlib.jl"))
 createlib()
-
 cd(deps)
+println(isfile("sfml"))
 
-if isfile("sfml")
+if isfile("sfml") || isdir("sfml")
     rm("sfml", recursive=true)
 end
-if isfile("csfml")
+if isfile("csfml") || isdir("csfml")
     rm("csfml", recursive=true)
 end
 
