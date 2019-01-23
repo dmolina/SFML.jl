@@ -32,7 +32,7 @@ end
 
 deps = dirname(@__FILE__)
 cd(deps)
-const SFML_VERSION="2.2"
+const SFML_VERSION="2.4"
 
 @static if Sys.isapple()
     sfml = "http://www.sfml-dev.org/files/SFML-$(SFML_VERSION)-osx-clang-universal.tar.gz"
