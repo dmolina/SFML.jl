@@ -1,4 +1,4 @@
-type SoundBufferRecorder
+mutable struct SoundBufferRecorder
     ptr::Ptr{Cvoid}
 
     function SoundBufferRecorder(ptr::Ptr{Cvoid})

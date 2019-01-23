@@ -1,4 +1,4 @@
-type Shader
+mutable struct Shader
     ptr::Ptr{Cvoid}
 
     function Shader(ptr::Ptr{Cvoid})

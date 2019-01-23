@@ -1,5 +1,5 @@
 mutable struct Image
-    ptr::Ptr{Void}
+    ptr::Ptr{Cvoid}
 
     function Image(ptr::Ptr{Cvoid})
         i = new(ptr)

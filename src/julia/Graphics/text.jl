@@ -1,4 +1,4 @@
-type RenderText <: Drawable
+mutable struct RenderText <: Drawable
     ptr::Ptr{Cvoid}
     _font::Font
 

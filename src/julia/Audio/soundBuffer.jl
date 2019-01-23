@@ -1,4 +1,4 @@
-type SoundBuffer
+mutable struct SoundBuffer
     ptr::Ptr{Cvoid}
 
     function SoundBuffer(ptr::Ptr{Cvoid})

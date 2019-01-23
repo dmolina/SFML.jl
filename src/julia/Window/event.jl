@@ -1,4 +1,4 @@
-type Event
+mutable struct Event
     ptr::Ptr{Cvoid}
 
     function Event(ptr::Ptr{Cvoid})

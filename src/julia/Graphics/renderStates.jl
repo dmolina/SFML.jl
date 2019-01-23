@@ -1,4 +1,4 @@
-type RenderStates
+mutable struct RenderStates
     ptr::Ptr{Cvoid}
 
     function RenderStates(ptr::Ptr{Cvoid})

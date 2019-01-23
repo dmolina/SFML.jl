@@ -1,4 +1,4 @@
-type Sprite <: Drawable
+mutable struct Sprite <: Drawable
     ptr::Ptr{Cvoid}
     _texture::Texture
 

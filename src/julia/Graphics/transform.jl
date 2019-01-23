@@ -10,7 +10,7 @@ struct _Transform
     a_9::Cfloat
 end
 
-type Transform
+mutable struct Transform
     matrix::Array{Real, 1}
 end
 

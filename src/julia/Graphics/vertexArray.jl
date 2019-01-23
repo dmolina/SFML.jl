@@ -7,13 +7,13 @@ trianglesStrip,
 triangleFan,
 quads)
 
-immutable Vertex
+struct Vertex
     position::Vector2f
     color::Color
     texCoords::Vector2f
 end
 
-type VertexArray <: Drawable
+mutable struct VertexArray <: Drawable
     ptr::Ptr{Cvoid}
 
     function VertexArray(ptr::Ptr{Cvoid})

@@ -1,4 +1,4 @@
-type ConvexShape <: Drawable
+mutable struct ConvexShape <: Drawable
     ptr::Ptr{Cvoid}
     _texture::Texture
 

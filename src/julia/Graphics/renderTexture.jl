@@ -1,4 +1,4 @@
-type RenderTexture
+mutable struct RenderTexture
     ptr::Ptr{Cvoid}
     _view::View
 

@@ -1,4 +1,4 @@
-type CircleShape <: Drawable
+mutable struct CircleShape <: Drawable
     ptr::Ptr{Cvoid}
     _texture::Texture
 

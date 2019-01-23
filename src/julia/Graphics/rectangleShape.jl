@@ -1,4 +1,4 @@
-type RectangleShape <: Drawable
+mutable struct RectangleShape <: Drawable
     ptr::Ptr{Cvoid}
     _texture::Texture
 

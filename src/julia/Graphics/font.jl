@@ -1,4 +1,4 @@
-type Font
+mutable struct Font
     ptr::Ptr{Cvoid}
 
     function Font(ptr::Ptr{Cvoid})

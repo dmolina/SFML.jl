@@ -1,4 +1,4 @@
-type Texture
+mutable struct Texture
     ptr::Ptr{Cvoid}
 
     function Texture(ptr::Ptr{Cvoid})
