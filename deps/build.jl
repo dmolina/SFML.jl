@@ -33,6 +33,7 @@ end
 deps = dirname(@__FILE__)
 cd(deps)
 const SFML_VERSION="2.5.1"
+const CSFML_VERSION="2.0"
 
 @static if Sys.isapple()
     sfml = "http://www.sfml-dev.org/files/SFML-$(SFML_VERSION)-osx-clang-universal.tar.gz"
@@ -81,7 +82,7 @@ end
 
     if !useSystemSFML  # get our own, but may not work on some platforms [deps]
         sfml = "http://www.sfml-dev.org/files/SFML-$(SFML_VERSION)-linux-gcc-$(Sys.WORD_SIZE)-bit.tar.gz"
-        csfml = "http://www.sfml-dev.org/files/CSFML-$(SFML_VERSION)-linux-gcc-$(Sys.WORD_SIZE)-bit.tar.bz2"
+        csfml = "http://www.sfml-dev.org/files/CSFML-$(CSFML_VERSION)-linux-gcc-$(Sys.WORD_SIZE)-bit.tar.bz2"
 
         if !isfile("sfml.tar.gz")
             println("Downloading SFML...")
@@ -105,13 +106,13 @@ end
 
         cd(deps)
         for i = 1:length(modules)
-            run(`ln -sf libcsfml-$(modules[i]).so libcsfml-$(modules[i]).so.$(SFML_VERSION)`)
+            run(`ln -sf libcsfml-$(modules[i]).so libcsfml-$(modules[i]).so.$(CSFML_VERSION)`)
         end
     else
         # use system SFML/CSFML
         for i = 1:length(modules)
             cd(deps)
-            run(`ln -sf $(systemLibPath)/libcsfml-$(modules[i]).so libcsfml-$(modules[i]).so.$(SFML_VERSION)`)
+            run(`ln -sf $(systemLibPath)/libcsfml-$(modules[i]).so libcsfml-$(modules[i]).so.$(CSFML_VERSION)`)
             run(`ln -sf $(systemLibPath)/libsfml-$(modules[i]).so libsfml-$(modules[i]).so`)
         end
     end
