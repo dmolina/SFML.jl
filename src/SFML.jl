@@ -175,7 +175,7 @@ end
 function make_gif(images::Array{Image}, width, height, filename="plot.gif", delay=0.06)
     println("Please wait while your gif is made... This may take awhile")
     dir = mktempdir()
-    name = filename[1:search(filename, '.')-1]
+    filename = file[1:findfirst(isequal('.'), file) - 1]
     imgsize = "$width" * "x" * "$height"
 
     for i = 1:length(images)

@@ -16,9 +16,8 @@ end
 function symlink_files(dir, ext)
     cd(dir)
     files = readdir(dir)
-    for i = 1:length(files)
-        file = files[i]
-        filename = file[1:search(file, '.') - 1]
+    for file in files
+        filename = file[1:findfirst(isequal('.'), file) - 1]
         if ismatch(r"\w*?-\w*?.(so|dylib|dll)$", file)
             run(`ln -sf $filename.$ext $file`)
         end

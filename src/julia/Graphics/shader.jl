@@ -23,10 +23,11 @@ end
 
 function Shader(shader::AbstractString)
     shadername = basename(shader)
-    if shadername[search(shadername, ".")+1] == "v"
+    firstext = shadername[findfirst(equal('.'), shadername)+1]
+    if firstext == "v"
         # This shader is a vertex shader
         Shader(shader, "")
-    elseif shadername[search(shadername, ".") + 1] == "f"
+    elseif firstext == "f"
         # This shader is a fragment shader
         Shader("", shader)
     else
