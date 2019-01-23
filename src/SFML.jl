@@ -13,7 +13,7 @@ using Libdl
 function check_deps(ldd_result)
     i = 0
     for line in split(ldd_result, "\n")
-        if contains(line, "not found") && !contains(line, "libsfml")
+        if occursin(line, "not found") && !occursin(line, "libsfml")
             i += 1
             if i == 1
                 println("Could not resolve dependencies:")
@@ -55,15 +55,15 @@ function __init__()
             end
 
             @compat @static if Sys.islinux()
-                system_deps = @compat readstring(`ldd libsfml-system.so`)
+                system_deps = @compat read(`ldd libsfml-system.so`, String)
                 check_deps(system_deps)
-                network_deps = @compat readstring(`ldd libsfml-network.so`)
+                network_deps = @compat read(`ldd libsfml-network.so`, String)
                 check_deps(network_deps)
-                graphics_deps = @compat readstring(`ldd libsfml-graphics.so`)
+                graphics_deps = @compat read(`ldd libsfml-graphics.so`, String)
                 check_deps(graphics_deps)
-                audio_deps = @compat readstring(`ldd libsfml-audio.so`)
+                audio_deps = @compat read(`ldd libsfml-audio.so`, String)
                 check_deps(audio_deps)
-                window_deps = @compat readstring(`ldd libsfml-window.so`)
+                window_deps = @compat read(`ldd libsfml-window.so`, String)
                 check_deps(window_deps)
             end
 
