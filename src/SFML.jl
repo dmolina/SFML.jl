@@ -4,9 +4,9 @@ VERSION >= v"0.4.0-dev+6521" && __precompile__()
 
 using Compat
 
-import Base: display, isopen, close, reset, copy, launch, start, listen,
-       accept, connect, write, send, bind, download, contains,
-    +, -, *, /
+# import Base: display, isopen, close, reset, copy, launch, start, listen,
+#        accept, connect, write, send, bind, download, contains,
+#     +, -, *, /
 
 using Libdl
 
