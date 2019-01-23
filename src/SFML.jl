@@ -41,15 +41,7 @@ end
     const libcsfml_graphics = "csfml-graphics-2"
 end
 
-@compat @static if Sys.isapple()
-    const libjuliasfml_ptr = Libdl.dlopen("$deps/libjuliasfml.dylib")
-end
-@compat @static if Sys.islinux()
-    const libjuliasfml_ptr = Libdl.dlopen("$deps/libjuliasfml.so")
-end
-
 const libjuliasfml = "libjuliasfml"
- 
 
 function __init__()
     old = pwd()
