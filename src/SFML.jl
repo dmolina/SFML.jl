@@ -46,7 +46,7 @@ const libjuliasfml = "libjuliasfml"
 function __init__()
     old = pwd()
     push!(Libdl.DL_LOAD_PATH, deps)
-    try
+     try
         @compat @static if Sys.isunix()
             cd(deps)
             @compat @static if Sys.isapple()
@@ -55,28 +55,31 @@ function __init__()
             end
 
             @compat @static if Sys.islinux()
-                system_deps = @compat read(`ldd libsfml-system.so`, String)
-                check_deps(system_deps)
-                network_deps = @compat read(`ldd libsfml-network.so`, String)
-                check_deps(network_deps)
-                graphics_deps = @compat read(`ldd libsfml-graphics.so`, String)
-                check_deps(graphics_deps)
-                audio_deps = @compat read(`ldd libsfml-audio.so`, String)
-                check_deps(audio_deps)
-                window_deps = @compat read(`ldd libsfml-window.so`, String)
-                check_deps(window_deps)
-            end
 
-            Libdl.dlopen("libsfml-system", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libsfml-network", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libsfml-audio", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libsfml-window", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libsfml-graphics", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libcsfml-system", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libcsfml-network", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libcsfml-audio", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libcsfml-window", Libdl.RTLD_GLOBAL)
-            Libdl.dlopen("libcsfml-graphics", Libdl.RTLD_GLOBAL)
+                if isempty(Libdl.find_library("libcsfml-system"))
+                    system_deps = @compat read(`ldd libsfml-system.so`, String)
+                    check_deps(system_deps)
+                    network_deps = @compat read(`ldd libsfml-network.so`, String)
+                    check_deps(network_deps)
+                    graphics_deps = @compat read(`ldd libsfml-graphics.so`, String)
+                    check_deps(graphics_deps)
+                    audio_deps = @compat read(`ldd libsfml-audio.so`, String)
+                    check_deps(audio_deps)
+                    window_deps = @compat read(`ldd libsfml-window.so`, String)
+                    check_deps(window_deps)
+
+                    Libdl.dlopen("libsfml-system", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libsfml-network", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libsfml-audio", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libsfml-window", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libsfml-graphics", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libcsfml-system", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libcsfml-network", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libcsfml-audio", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libcsfml-window", Libdl.RTLD_GLOBAL)
+                    Libdl.dlopen("libcsfml-graphics", Libdl.RTLD_GLOBAL)
+                end
+            end
         end
 
        cd(old)

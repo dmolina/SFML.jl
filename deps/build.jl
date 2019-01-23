@@ -2,6 +2,8 @@
     using WinRPM
 end
 
+using Libdl
+
 function copy_libs(src, dst)
     files = readdir(src)
 
