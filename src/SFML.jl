@@ -23,6 +23,29 @@ function check_deps(ldd_result)
     end
 end
 
+@compat @static if Sys.isunix()
+    const libcsfml_system = "libcsfml-system"
+    const libcsfml_audio = "libcsfml-audio"
+    const libcsfml_network = "libcsfml-network"
+    const libcsfml_window = "libcsfml-window"
+    const libcsfml_graphics = "libcsfml-graphics"
+end
+
+@compat @static if Sys.iswindows()
+    const libcsfml_system = "csfml-system-2"
+    const libcsfml_audio = "csfml-audio-2"
+    const libcsfml_network = "csfml-network-2"
+    const libcsfml_window = "csfml-window-2"
+    const libcsfml_graphics = "csfml-graphics-2"
+end
+
+@compat @static if Sys.isunix()
+    const libjuliasfml_ptr = Libdl.dlopen("$deps/libjuliasfml")
+end
+
+const libjuliasfml = "libjuliasfml"
+ 
+
 function __init__()
     old = pwd()
     deps = joinpath(dirname(@__FILE__),"..","deps")
@@ -58,26 +81,7 @@ function __init__()
             Libdl.dlopen("libcsfml-audio", Libdl.RTLD_GLOBAL)
             Libdl.dlopen("libcsfml-window", Libdl.RTLD_GLOBAL)
             Libdl.dlopen("libcsfml-graphics", Libdl.RTLD_GLOBAL)
-            global const libcsfml_system = "libcsfml-system"
-            global const libcsfml_audio = "libcsfml-audio"
-            global const libcsfml_network = "libcsfml-network"
-            global const libcsfml_window = "libcsfml-window"
-            global const libcsfml_graphics = "libcsfml-graphics"
-        end
-
-        @compat @static if Sys.iswindows()
-            global const libcsfml_system = "csfml-system-2"
-            global const libcsfml_audio = "csfml-audio-2"
-            global const libcsfml_network = "csfml-network-2"
-            global const libcsfml_window = "csfml-window-2"
-            global const libcsfml_graphics = "csfml-graphics-2"
-        end
-
-        @compat @static if Sys.isunix()
-            global const libjuliasfml_ptr = Libdl.dlopen("$deps/libjuliasfml")
-        end
-        global const libjuliasfml = "libjuliasfml"
-        cd(old)
+       cd(old)
     catch exception
         println("Something has gone wrong with the SFML installation.")
         println(exception)
