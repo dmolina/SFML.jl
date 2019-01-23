@@ -79,21 +79,17 @@ end
 
 contains(obj, v::Vector2) = contains(obj, v.x, v.y)
 
-import Base.eltype
 function eltype{T <: Vector2}(::Type{T})
     @assert isleaftype(T)
     typeof(T(0,0).x)
 end
 eltype(v::Vector2) = eltype(typeof(v))
 
-import Base.*
 *(s::Number, v::Vector2) = Vector2(s*v.x, s*v.y)
 *(v::Vector2, s::Number) = s*v
 
-import Base.==
 ==(v::Vector2, w::Vector2) = (v.x == w.x) & (v.y == w.y)
 
-import Base.convert
 convert{V <: Vector2}(::Type{V}, v::Vector2) = V(v.x, v.y)
 
 Base.start(v::Vector2) = 1
