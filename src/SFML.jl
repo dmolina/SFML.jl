@@ -67,18 +67,18 @@ function __init__()
                     check_deps(audio_deps)
                     window_deps = @compat read(`ldd libsfml-window.so`, String)
                     check_deps(window_deps)
-
-                    Libdl.dlopen("libsfml-system", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libsfml-network", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libsfml-audio", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libsfml-window", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libsfml-graphics", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libcsfml-system", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libcsfml-network", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libcsfml-audio", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libcsfml-window", Libdl.RTLD_GLOBAL)
-                    Libdl.dlopen("libcsfml-graphics", Libdl.RTLD_GLOBAL)
                 end
+
+                Libdl.dlopen("libsfml-system", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libsfml-network", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libsfml-audio", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libsfml-window", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libsfml-graphics", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libcsfml-system", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libcsfml-network", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libcsfml-audio", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libcsfml-window", Libdl.RTLD_GLOBAL)
+                Libdl.dlopen("libcsfml-graphics", Libdl.RTLD_GLOBAL)
             end
         end
 
